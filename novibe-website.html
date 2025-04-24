@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoVibe Design House</title>
+    <style>
+        :root {
+            --rich-black: #0a0a0a;
+            --pure-white: #ffffff;
+            --translucent-gray: rgba(200, 200, 200, 0.2);
+            --subtle-silver: #e0e0e0;
+            --accent-gray: #909090;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--pure-white);
+            color: var(--rich-black);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background-color: var(--pure-white);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            position: relative;
+        }
+
+        .logo-square {
+            stroke: var(--rich-black);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .logo-flow {
+            fill: none;
+            stroke: var(--rich-black);
+            stroke-width: 1.5;
+        }
+
+        .logo-name {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--rich-black);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--rich-black);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--accent-gray);
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: var(--translucent-gray);
+        }
+
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            top: 20%;
+            left: 60%;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 15%;
+            left: 20%;
+        }
+
+        .mantra {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--accent-gray);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--rich-black);
+            color: var(--rich-black);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--rich-black);
+            color: var(--pure-white);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 1px;
+            background-color: var(--rich-black);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-description {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--accent-gray);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .philosophy-item {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--translucent-gray);
+            transition: all 0.3s ease;
+        }
+
+        .philosophy-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .philosophy-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-title {
+            color: var(--pure-white);
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .portfolio-category {
+            color: var(--subtle-silver);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .process-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            background-color: var(--translucent-gray);
+            transform: translateX(-50%);
+        }
+
+        .process-item {
+            position: relative;
+            margin-bottom: 4rem;
+        }
+
+        .process-item:nth-child(odd) {
+            padding-right: calc(50% + 2rem);
+            text-align: right;
+        }
+
+        .process-item:nth-child(even) {
+            padding-left: calc(50% + 2rem);
+        }
+
+        .process-dot {
+            position: absolute;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--pure-white);
+            border: 1px solid var(--rich-black);
+        }
+
+        .process-item:nth-child(odd) .process-dot {
+            right: calc(50% - 7.5px);
+        }
+
+        .process-item:nth-child(even) .process-dot {
+            left: calc(50% - 7.5px);
+        }
+
+        .process-number {
+            font-size: 3rem;
+            font-weight: 200;
+            color: var(--translucent-gray);
+            margin-bottom: 1rem;
+        }
+
+        .process-title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        #contact {
+            background-color: var(--translucent-gray);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-bottom: 1px solid var(--accent-gray);
+            background-color: transparent;
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-bottom-color: var(--rich-black);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            padding: 12px 30px;
+            border: 1px solid var(--rich-black);
+            background-color: transparent;
+            color: var(--rich-black);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin-left: auto;
+        }
+
+        .submit-button:hover {
+            background-color: var(--rich-black);
+            color: var(--pure-white);
+        }
+
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--accent-gray);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--accent-gray);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: var(--accent-gray);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            border-color: var(--rich-black);
+            color: var(--rich-black);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 2px;
+            margin: 5px auto;
+            background-color: var(--rich-black);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background-color: var(--pure-white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            nav ul li {
+                margin: 1.5rem 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .process-timeline::before {
+                left: 30px;
+            }
+
+            .process-item:nth-child(odd),
+            .process-item:nth-child(even) {
+                padding-left: 80px;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .process-item:nth-child(odd) .process-dot,
+            .process-item:nth-child(even) .process-dot {
+                left: 23px;
+                right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40">
+                        <rect class="logo-square" x="2" y="2" width="36" height="36" />
+                        <path class="logo-flow" d="M10,20 C15,10 25,30 30,20" />
+                        <path class="logo-flow" d="M10,25 C20,15 20,25 30,15" />
+                    </svg>
+                </div>
+                <div class="logo-name">NOVIBE</div>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">HOME</a></li>
+                    <li><a href="#philosophy">PHILOSOPHY</a></li>
+                    <li><a href="#portfolio">WORK</a></li>
+                    <li><a href="#process">PROCESS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">NOVIBE DESIGN HOUSE</h1>
+            <h2 class="hero-subtitle">INNOVATION THROUGH EMPTINESS</h2>
+            <p class="mantra">"Empty the vessel. Find the form."</p>
+            <a href="#contact" class="cta-button">START A PROJECT</a>
+        </div>
+    </section>
+
+    <section id="philosophy">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">OUR PHILOSOPHY</h2>
+                <p class="section-description">
+                    NoVibe embraces the absence of predefined aesthetics or rigid methodologies.
+                    Like meditation, we empty the mind to create space for unlimited creative potential.
+                </p>
+            </div>
+            <div class="philosophy-grid">
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">○</div>
+                    <h3 class="philosophy-title">ABSENCE AS POTENTIAL</h3>
+                    <p>We approach design with intentional absence of stylistic preconceptions, creating space for authentic solutions to emerge.</p>
+                </div>
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">△</div>
+                    <h3 class="philosophy-title">FORM FOLLOWS INSIGHT</h3>
+                    <p>Our designs emerge from deep understanding rather than predefined aesthetic preferences or trends.</p>
+                </div>
+                <div class="philosophy-item">
+                    <div class="philosophy-icon">□</div>
+                    <h3 class="philosophy-title">ADAPTIVE CREATION</h3>
+                    <p>We adapt our approach to each unique challenge, unconstrained by signature styles or methodological rigidity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">SELECTED WORK</h2>
+                <p class="section-description">
+                    Each project represents a unique journey from emptiness to form, guided by genuine insight and unbounded creativity.
+                </p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/600/400" alt="Project 1" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">CLARITY REBRAND</h3>
+                        <p class="portfolio-category">BRAND IDENTITY</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/600/400" alt="Project 2" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">MINDFLOW APP</h3>
+                        <p class="portfolio-category">UX/UI DESIGN</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/600/400" alt="Project 3" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">ESSENCE PAVILION</h3>
+                        <p class="portfolio-category">ENVIRONMENTAL DESIGN</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/600/400" alt="Project 4" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">FORMLESS COLLECTION</h3>
+                        <p class="portfolio-category">PRODUCT DESIGN</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/600/400" alt="Project 5" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">VACANCY CAMPAIGN</h3>
+                        <p class="portfolio-category">VISUAL COMMUNICATION</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/api/placeholder/600/400" alt="Project 6" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">OPEN FRAME</h3>
+                        <p class="portfolio-category">INTERACTIVE INSTALLATION</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">OUR PROCESS</h2>
+                <p class="section-description">
+                    Our design process reflects our philosophy of emptiness as creative potential, guiding projects from void to form.
+                </p>
+            </div>
+            <div class="process-timeline">
+                <div class="process-item">
+                    <div class="process-dot"></div>
+                    <div class="process-number">01</div>
+                    <h3 class="process-title">EMPTY THE VESSEL</h3>
+                    <p>We begin by clearing preconceptions and creating space for authentic insights to emerge.</p>
+                </div>
+                <div class="process-item">
+                    <div class="process-dot"></div>
+                    <div class="process-number">02</div>
+                    <h3 class="process-title">DEEP LISTENING</h3>
+                    <p>We engage in profound observation and understanding of context, needs, and possibilities.</p>
+                </div>
+                <div class="process-item">
+                    <div class="process-dot"></div>
+                    <div class="process-number">03</div>
+                    <h3 class="process-title">ESSENCE EXTRACTION</h3>
+                    <p>We distill complex challenges to their fundamental core, identifying the essential truth.</p>
+                </div>
+                <div class="process-item">
+                    <div class="process-dot"></div>
+                    <div class="process-number">04</div>
+                    <h3 class="process-title">FORMLESS EXPLORATION</h3>
+                    <p>We explore possibilities without attachment to specific outcomes, allowing solutions to reveal themselves.</p>
+                </div>
+                <div class="process-item">
+                    <div class="process-dot"></div>
+                    <div class="process-number">05</div>
+                    <h3 class="process-title">MANIFEST FORM</h3>
+                    <p>We give shape to the insights and solutions that have emerged, crafting with precision and purpose.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">START A PROJECT</h2>
+                <p class="section-description">
+                    Ready to embrace the potential of emptiness? Let's begin a conversation about your project.
+                </p>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Project Type">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Tell us about your project"></textarea>
+                </div>
+                <button type="submit" class="submit-button">SUBMIT</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" class="social-link">In</a>
+                <a href="#" class="social-link">Ig</a>
+                <a href="#" class="social-link">Be</a>
+                <a href="#" class="social-link">Dr</a>
+            </div>
+            <p>&copy; 2025 NoVibe Design House. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('nav ul');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+
+            // Toggle animation for menu bars
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => bar.classList.toggle('animate'));
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('active')) {
+                        mobileMenuToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission (prevent default)
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message. We will get back to you soon!');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
